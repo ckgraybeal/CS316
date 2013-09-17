@@ -1,0 +1,71 @@
+//a
+\project_{beer}  (\select_{bar = 'Satisfaction'} Serves);
+
+//b
+\project_{name, address} (
+(\project_{bar} \select_{drinker = 'Amy'} Frequents)
+\join_{bar = name}
+Bar
+);
+
+//c
+\project_{bar} (\select_{price<=2.50}
+(\project_{bar, beer, price}
+(\project_{drinker, beer} (\select_{drinker = 'Amy'} Likes)
+\join
+Serves)))
+;
+
+//d
+\project_{bar} (
+\project_{bar} (\select_{drinker='Ben'} Frequents)
+\intersect
+\project_{bar} (\select_{drinker='Dan'} Frequents)
+);
+
+//e
+\project_{bar} (
+(
+\project_{bar} (\select_{drinker='Ben'} Frequents)
+\union
+\project_{bar} (\select_{drinker='Dan'} Frequents)
+)
+\diff
+(
+\project_{bar} (\select_{drinker='Ben'} Frequents)
+\intersect
+\project_{bar} (\select_{drinker='Dan'} Frequents)
+)
+);
+
+//f
+\project_{bar,beer}(
+(\project_{bar, beer} Serves)
+\diff
+(\project_{bar, beer} (Frequents \join Likes))
+);
+
+
+//g
+\project_{drinker}(
+   (\project_{drinker} Frequents)
+   \diff
+   (\project_{drinker} (
+      (\project_{drinker, bar} Frequents)
+      \diff
+      (\project_{drinker, bar}  ( Likes \join Serves))
+   ))
+);
+
+
+//h
+\project_{drinker}(
+   (\project_{drinker} Frequents)
+   \diff
+   (\project_{drinker} (
+      (\project_{drinker, bar}  ( Likes \join Serves))
+      \diff
+      (\project_{drinker, bar} Frequents)
+   ))
+);
+
