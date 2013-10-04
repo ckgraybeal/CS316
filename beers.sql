@@ -100,7 +100,4 @@ FROM	--total number of frequenters
 	ON foo.bar = goo.bar
 ORDER BY num_drinkers DESC;
 
---serves
-SELECT * FROM Serves;
---frequents
-SELECT * FROM Frequents;
+
