@@ -1,0 +1,70 @@
+--display information on all concerts 
+SELECT * FROM Events
+WHERE category = 'Concert';
+ eid |            name             |       venue       |    date    | category | cost | start_time | end_time | link | additional_info 
+-----+-----------------------------+-------------------+------------+----------+------+------------+----------+------+-----------------
+   1 | Watsky/Wax Hug A Hater Tour | Cat's Cradle      | 2013-10-17 | Concert  |   15 | 19:00:00   | 21:00:00 | link | 
+   2 |                             | Cat's Cradle      | 2013-10-17 | Concert  |   15 | 19:00:00   | 21:00:00 | link | 
+   3 | SOJA                        | Cat's Cradle      | 2013-10-17 | Concert  |   20 | 19:00:00   | 21:00:00 | link | 
+   4 | Of Montreal                 | Cat's Cradle      | 2013-10-20 | Concert  |   20 | 19:00:00   | 21:00:00 | link | 
+   5 | Father John Misty Solo      | Cat's Cradle      | 2013-10-21 | Concert  |   20 | 19:00:00   | 21:00:00 | link | 
+   9 | DAY JOB + KOOL AD           | Duke Coffee House | 2013-10-30 | Concert  |    0 | 19:00:00   | 21:00:00 | link | 
+  10 | Mountain Oasis              | Asheville         | 2013-10-17 | Concert  |  100 | 19:00:00   | 21:00:00 | link | 
+(7 rows)
+
+--display events on october 20, 2013
+SELECT * FROM Events
+WHERE date = '2013-10-20';
+ eid |    name     |    venue     |    date    | category | cost | start_time | end_time | link | additional_info 
+-----+-------------+--------------+------------+----------+------+------------+----------+------+-----------------
+   4 | Of Montreal | Cat's Cradle | 2013-10-20 | Concert  |   20 | 19:00:00   | 21:00:00 | link | 
+(1 row)
+
+--display popular events after october 16
+SELECT DISTINCT e.name, e.date, e.venue FROM Events AS e, Attending AS a
+WHERE date >= '2013-10-16'
+AND e.EID IN 
+(SELECT EID FROM Attending 
+WHERE Attending.confirmed=TRUE
+GROUP BY EID
+);
+           name            |    date    |     venue     
+---------------------------+------------+---------------
+ Southern Tier Beer Dinner | 2013-10-24 | G2B Gastropub
+ Mountain Oasis            | 2013-10-17 | Asheville
+ Of Montreal               | 2013-10-20 | Cat's Cradle
+                           | 2013-10-17 | Cat's Cradle
+(4 rows)
+
+--display number of people attending each event
+SELECT EID, Count(*) FROM Attending
+WHERE Confirmed = TRUE
+GROUP BY EID;
+ eid | count 
+-----+-------
+   4 |     1
+  10 |     3
+   6 |     1
+   2 |     1
+(4 rows)
+
+--display event search by keyword "Montreal"
+SELECT * FROM Events
+WHERE name LIKE '%Montreal%' OR venue LIKE '%Montreal%' 
+OR category LIKE '%Montreal%' OR additional_info LIKE '%Montreal%';
+ eid |    name     |    venue     |    date    | category | cost | start_time | end_time | link | additional_info 
+-----+-------------+--------------+------------+----------+------+------------+----------+------+-----------------
+   4 | Of Montreal | Cat's Cradle | 2013-10-20 | Concert  |   20 | 19:00:00   | 21:00:00 | link | 
+(1 row)
+
+--display events that cost less than $15
+SELECT * FROM Events
+WHERE cost<=15;
+ eid |            name             |          venue          |    date    | category | cost | start_time | end_time | link | additional_info 
+-----+-----------------------------+-------------------------+------------+----------+------+------------+----------+------+-----------------
+   1 | Watsky/Wax Hug A Hater Tour | Cat's Cradle            | 2013-10-17 | Concert  |   15 | 19:00:00   | 21:00:00 | link | 
+   2 |                             | Cat's Cradle            | 2013-10-17 | Concert  |   15 | 19:00:00   | 21:00:00 | link | 
+   8 | Durham Sports Club Meeting  | Croasdaile Country Club | 2013-10-25 | Other    |   10 | 19:00:00   | 21:00:00 | link | 
+   9 | DAY JOB + KOOL AD           | Duke Coffee House       | 2013-10-30 | Concert  |    0 | 19:00:00   | 21:00:00 | link | 
+(4 rows)
+
