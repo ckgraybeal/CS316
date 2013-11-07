@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<result>
+   <closed_auction>
+      <buyer person="person63"/>
+   </closed_auction>
+   <closed_auction>
+      <buyer person="person55"/>
+   </closed_auction>
+   <closed_auction>
+      <buyer person="person66"/>
+   </closed_auction>
+   <closed_auction>
+      <buyer person="person66"/>
+   </closed_auction>
+   <closed_auction>
+      <buyer person="person33"/>
+   </closed_auction>
+</result>
