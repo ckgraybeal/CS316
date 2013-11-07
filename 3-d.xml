@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8">
+<xsl:stylesheet version="1.0"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:template match="term">
+     <term>
+       <xsl:attribute name="id">
+          <xsl:value-of select="term-{/term/termId}">
+       </xsl:attribute>
+       <xsl:attribute name="name">
+          <xsl:value-of select="{/term/termName}">
+       </xsl:attribute>
+       <xsl:attribute name="type">
+          <xsl:value-of select="{/term/termType}">
+       </xsl:attribute>
+       <xsl:for-each select="{/term/relation}">
+           <relation>
+              <xsl:attribute name="id">
+                 <xsl:value-of select="term-{/relation/termId}">
+              </xsl:attribute>
+              <xsl:attribute name="type">
+                 <xsl:value-of select="{/relation/relationType}">
+              </xsl:attribute> 
+           </relation>
+       </xsl:for-each>  
+     </term>
+  </xsl:template>
+
+</xsl:stylesheet>

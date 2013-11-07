@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<result>
+   <term id="term-1159" name="THIRD WORLD" type="ND">
+      <relation term="term-347" type="USE"/>
+   </term>
+   <term id="term-1108" name="STANDARDS" type="TT">
+      <relation term="term-13" type="NT"/>
+      <relation term="term-62" type="NT"/>
+   </term>
+   <term id="term-1607" name="MACHINE LEARNING" type="TT">
+      <relation term="term-1604" type="RT"/>
+   </term>
+   <term id="term-566" name="GEOGRAPHY" type="TT">
+      <relation term="term-740" type="NT"/>
+      <relation term="term-1022" type="NT"/>
+      <relation term="term-1047" type="NT"/>
+      <relation term="term-1296" type="NT"/>
+   </term>
+</result>
